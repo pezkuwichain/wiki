@@ -5,8 +5,10 @@ and can move tokens."
 
 ## 1. Get a wallet
 
-The easiest way in is the **[Pezkuwi Wallet](wallet.md)** mobile app (Android,
-available on Google Play). Wallets let you:
+On mobile, the easiest way in is the **[Pezkuwi Wallet](wallet.md)** app (Android,
+on Google Play). On desktop, use the **[Pezkuwi browser extension](ecosystem.md#pezkuwi-extension)**
+(Chrome / Firefox) to manage accounts and sign transactions in dApps. Either way,
+a wallet lets you:
 
 - create or import an account (a 12/24-word secret phrase),
 - hold **HEZ**, **PEZ**, and **PEZ-20** assets,
@@ -48,6 +50,7 @@ Public RPC endpoints:
 |-------|----------|
 | Relay chain | `wss://rpc.pezkuwichain.io` |
 | Asset Hub | `wss://asset-hub-rpc.pezkuwichain.io` |
+| People Chain | `wss://people-rpc.pezkuwichain.io` |
 
 Build with the `@pezkuwi/*` libraries (the sovereign equivalent of `@polkadot/*`).
 See the **[SDK documentation](https://docs.pezkuwichain.io/)** for the API

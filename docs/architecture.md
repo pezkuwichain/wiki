@@ -53,6 +53,8 @@ Handles **identity and citizenship** — on-chain identities and privacy-preserv
 KYC. It is also run by collators. The People Chain keeps identity workloads off
 the relay chain so they stay cheap and fast.
 
+- Public RPC: `wss://people-rpc.pezkuwichain.io`
+
 ### Governance
 
 Where the network governs itself: **proposals, referenda, and voting**, powered by
