@@ -7,7 +7,7 @@ The apps and services built on and around PezkuwiChain.
 | App | What it is | Link |
 |-----|------------|------|
 | **Pezkuwi Wallet** | Official non-custodial mobile wallet (Android) | Google Play |
-| **Pezkuwi Extension** | Browser wallet (Chrome / Firefox) for accounts & signing | Chrome Web Store · [GitHub](https://github.com/pezkuwichain/pezkuwi-extension) |
+| **Pezkuwi Extension** | Browser wallet (Chrome) for accounts & signing | [Chrome Web Store](https://chromewebstore.google.com/detail/pezkuwi%7Bjs%7D-extension/fbnboicjjeebjhgnapneaeccpgjcdibn) · [GitHub](https://github.com/pezkuwichain/pezkuwi-extension) |
 | **PEX Exchange** | Non-profit exchange for HEZ / PEZ / USDT | [pex.network](https://pex.network/) |
 | **Governance app** | Live network stats + on-chain governance | [app.pezkuwichain.io](https://app.pezkuwichain.io/) |
 | **Telegram Mini App** | Wallet & DeFi features inside Telegram | via the official Pezkuwi bot |
@@ -15,16 +15,20 @@ The apps and services built on and around PezkuwiChain.
 
 ### Pezkuwi Extension
 
-The **Pezkuwi browser extension** is the desktop counterpart to the mobile wallet.
-It manages your accounts and signs transactions for dApps in **Chrome** and
-**Firefox** — the Pezkuwi-native equivalent of the polkadot.js extension. Install
-it from the **Chrome Web Store**, then connect to apps like the
-[governance app](https://app.pezkuwichain.io/) or [PEX](https://pex.network/).
+The **Pezkuwi browser extension** (*pezkuwi{.js} extension*) is the desktop
+counterpart to the mobile wallet. It manages your accounts and signs transactions
+for dApps — the Pezkuwi-native equivalent of the polkadot.js extension. Install it
+from the **[Chrome Web Store](https://chromewebstore.google.com/detail/pezkuwi%7Bjs%7D-extension/fbnboicjjeebjhgnapneaeccpgjcdibn)**,
+then connect to apps like the [governance app](https://app.pezkuwichain.io/) or
+[PEX](https://pex.network/). (A Firefox build is also available from the
+[source repository](https://github.com/pezkuwichain/pezkuwi-extension).)
 
 !!! danger "Only install the official extension"
     Browser wallet extensions can see what you sign. Install only the official
-    Pezkuwi extension from the Chrome Web Store, and treat its account password and
-    your recovery phrase the same way you would in any wallet — never share them.
+    Pezkuwi extension from the
+    [Chrome Web Store](https://chromewebstore.google.com/detail/pezkuwi%7Bjs%7D-extension/fbnboicjjeebjhgnapneaeccpgjcdibn)
+    link above, and treat its account password and your recovery phrase the same
+    way you would in any wallet — never share them.
 
 ## Infrastructure & developer resources
 
