@@ -1,0 +1,78 @@
+site_name: Pezkuwi Wiki
+site_url: https://wiki.pezkuwichain.io/
+site_description: >-
+  Community knowledge base for PezkuwiChain — architecture, tokens (HEZ/PEZ),
+  the PEZ-20 / PEZ-721 standards, staking, governance, wallet, and the PEX exchange.
+copyright: © PezkuwiChain — released under CC BY 4.0
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+
+repo_url: https://github.com/pezkuwichain/wiki
+repo_name: pezkuwichain/wiki
+edit_uri: edit/main/docs/
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pezkuwichain
+  generator: false
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Architecture: architecture.md
+  - Tokens & Standards: tokens.md
+  - Staking & Collators: staking.md
+  - Governance: governance.md
+  - Pezkuwi Wallet: wallet.md
+  - PEX Exchange: exchange.md
+  - Ecosystem: ecosystem.md
+  - FAQ: faq.md
+  - Glossary: glossary.md

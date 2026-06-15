@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wiki-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build & deploy to wiki.pezkuwichain.io
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Build site
+        run: mkdocs build --strict
+
+      - name: Deploy via rsync
+        env:
+          SSH_KEY:  ${{ secrets.WIKI_VPS_SSH_KEY }}
+          HOST:     ${{ secrets.WIKI_VPS_HOST }}
+          PORT:     ${{ secrets.WIKI_VPS_PORT }}
+          USER:     ${{ secrets.WIKI_VPS_USER }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_deploy -p $PORT -o IdentitiesOnly=yes" \
+            site/ "$USER@$HOST:/var/www/subdomains/wiki/"
+          echo "Deployed $(date -u) to wiki.pezkuwichain.io"
