@@ -68,9 +68,13 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Architecture: architecture.md
+  - The chains: chains.md
   - Tokens & Standards: tokens.md
   - Staking & Collators: staking.md
+  - TNPoS — the validator pool: tnpos.md
   - Governance: governance.md
+  - Institutions: institutions.md
+  - Treasuries: treasuries.md
   - Pezkuwi Wallet: wallet.md
   - PEX Exchange: exchange.md
   - Ecosystem: ecosystem.md

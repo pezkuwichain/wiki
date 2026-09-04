@@ -24,8 +24,8 @@ battle-tested, multi-chain architecture while remaining independent.
 Core ideas:
 
 - **Decentralized governance** through the on-chain *Welati* pallet
-- **Identity & citizenship** via privacy-preserving (zero-knowledge) KYC
-- **A dual-token economy** — HEZ for gas and security, PEZ for governance
+- **Identity & citizenship** — a non-transferable citizen NFT, admitted by vouching rather than by an administrator
+- **A dual-token economy** — HEZ for gas and security; PEZ for rewards and the state budget, fixed at five billion
 - **Familiar token standards** — PEZ-20 and PEZ-721, the runtime-native cousins
   of ERC-20 / ERC-721
 - **Education and reputation** primitives baked into the runtime (*Perwerde*,
@@ -39,6 +39,9 @@ Core ideas:
 | Learn about HEZ / PEZ / PEZ-20 | [Tokens & Standards](tokens.md) |
 | Stake, nominate, or run a collator | [Staking & Collators](staking.md) |
 | Vote and create proposals | [Governance](governance.md) |
+| See who holds which office | [Institutions](institutions.md) |
+| Find out who may move a fund | [Treasuries](treasuries.md) |
+| Understand validator selection | [TNPoS](tnpos.md) |
 | Hold and send tokens | [Pezkuwi Wallet](wallet.md) |
 | Trade on the exchange | [PEX Exchange](exchange.md) |
 | See all the apps | [Ecosystem](ecosystem.md) |

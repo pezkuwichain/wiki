@@ -7,8 +7,8 @@ PezkuwiChain has a **dual-token economy** and a small, familiar family of
 
 | Token | Role | Notes |
 |-------|------|-------|
-| **HEZ** | Native **gas & security** token | Pays transaction fees; staked by validators/nominators to secure the network. Inflationary, with a **48-month synthetic halving** schedule for rewards. |
-| **PEZ** | **Governance** token | Used for governance and treasury. The `PezTreasury` launched with an initial supply on the order of **5 billion PEZ**. |
+| **HEZ** | Native **gas & security** token | Pays transaction fees; staked to secure the network. Inflationary: **8% by default against a fixed 200,000,000 base, capped at 10% in code.** No halving — that belongs to PEZ. |
+| **PEZ** | **Reward & budget** asset | **Not a governance token — it carries no voting weight.** Fixed at 5,000,000,000 forever, with no mint or burn path and a keyless admin account. 96.25% is the commons, released monthly and **halving every 48 releases**, split 75% to citizens and 25% to the state budget. |
 
 On **Asset Hub**, the canonical representations at genesis are **PEZ (Asset ID 1)**
 and **wHEZ (Asset ID 2, wrapped HEZ)**.
