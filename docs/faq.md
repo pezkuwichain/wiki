@@ -33,8 +33,8 @@ test transfer first for large amounts.
 
 ### Where do I stake / nominate?
 
-On **Asset Hub** (`wss://asset-hub-rpc.pezkuwichain.io`). Staking moved there from
-the relay chain during the Asset Hub Migration (AHM). See [Staking](staking.md).
+On **Asset Hub** (`wss://asset-hub-rpc.pezkuwichain.io`) — where it has been since
+genesis, not after a migration. See [Staking](staking.md).
 
 ### How do I vote on proposals?
 

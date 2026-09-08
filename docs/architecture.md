@@ -1,36 +1,55 @@
 # Architecture
 
 PezkuwiChain is a **multi-chain network**: a central relay chain that provides
-shared security, plus specialized *system parachains* that each handle one job
-well. This is the same proven design used by Polkadot, on top of which the
-sovereign `pezkuwi-sdk` is built.
+shared security, plus specialized *teyrchains* (system chains) that each carry one
+function of the state and nothing else. This is the same proven design used by
+Polkadot, on top of which the sovereign `pezkuwi-sdk` is built — but here it is not
+a scaling decision. It is a **separation-of-powers decision expressed as topology**:
+the chain that holds the register is not the chain that holds the money, and neither
+is the chain that produces blocks.
+
+**Five chains are specified; two run from the first block.** The relay schedules
+exactly two cores at genesis — Asset Hub and People, the two a state cannot run
+without. Bridge Hub and Coretime are written and will be seated when there is
+traffic for them to carry.
 
 ## The chains
 
 ```
-            ┌──────────────────────────────────────────────┐
-            │            PEZKUWICHAIN RELAY CHAIN           │
-            │   Shared security · validator set · HEZ gas   │
-            │              Block time: ~6 seconds           │
-            └───────────────┬──────────────────────────────┘
+            ┌───────────────────────────────────────────────┐
+            │           PEZKUWICHAIN RELAY CHAIN            │
+            │  Shared security · validator committee · HEZ  │
+            │  escrow · no root track of its own · ~6 s     │
+            └───────────────┬───────────────────────────────┘
                             │  (shared security)
-        ┌───────────────────┼───────────────────┬───────────────────┐
-        ▼                   ▼                   ▼                   ▼
-┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
-│   ASSET HUB   │  │ PEOPLE CHAIN  │  │  GOVERNANCE   │  │  BRIDGE HUB    │
-│ tokens (PEZ-  │  │ identity &    │  │  proposals &  │  │ cross-network  │
-│ 20/721),      │  │ citizenship   │  │  referenda    │  │ bridging       │
-│ staking,      │  │ (KYC)         │  │  (Welati)     │  │                │
-│ collators     │  │               │  │               │  │                │
-└───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
+     ┌──────────────────────┼──────────────┬──────────────────┐
+     ▼                      ▼              ▼                  ▼
+┌──────────────┐  ┌──────────────────┐  ┌────────────┐  ┌────────────┐
+│  ASSET HUB   │  │  PEOPLE  (1004)  │  │ BRIDGE HUB │  │  CORETIME  │
+│    (1000)    │  │ register · offices│  │   (1002)   │  │   (1005)   │
+│ every fund   │  │ courts · trust    │  │ bridges to │  │ blockspace │
+│ PEZ · wHEZ   │  │ validator pool    │  │ Ethereum   │  │ allocation │
+│ wUSDT        │  │ governance (welati)│ │            │  │            │
+│ staking      │  │                   │  │ specified, │  │ specified, │
+│ elections    │  │ ── the one door ──┼─▶│ not seated │  │ not seated │
+│              │  │    into root      │  │            │  │            │
+└──────────────┘  └──────────────────┘  └────────────┘  └────────────┘
+       running             running          at genesis      at genesis
 ```
+
+There is **no separate governance chain.** Governance lives where the electorate
+does: the citizen roll and the `welati` pezpallet are on the People chain, and HEZ
+conviction voting is on the Asset Hub and the relay. A diagram showing a fourth
+"Governance" box described a plan that was never built.
 
 ### Relay Chain (PezkuwiChain Mainnet)
 
 The backbone. It runs the **validator set** that secures the whole network using
-**TNPoS** (Trust-enhanced Nominated Proof-of-Stake), an NPoS variant that factors
-on-chain reputation into validator selection. The native gas token here is
-**HEZ**. Block time is roughly **6 seconds**.
+**TNPoS** (Trust-enhanced Nominated Proof-of-Stake), in which a score decides
+*whether* a citizen may enter the validator pool and a uniform random draw decides
+*who sits* — trust is a gate, not a ranking. The native gas token here is **HEZ**.
+Block time is roughly **6 seconds**. The relay has **no `root` governance track of
+its own**: root arrives from the People chain and nowhere else.
 
 - Public RPC: `wss://rpc.pezkuwichain.io`
 
@@ -39,11 +58,12 @@ on-chain reputation into validator selection. The native gas token here is
 The home of **assets and value**. All issued fungible tokens (**PEZ-20**) and
 NFTs (**PEZ-721**) live here, managed by the `pallet-assets` and `pallet-nfts`
 runtime modules. Asset Hub is run by **collators** (block producers for the
-parachain).
+teyrchain).
 
-Following the network's **Asset Hub Migration (AHM)**, **NPoS staking now runs on
-Asset Hub** (via the async staking pallet) rather than on the relay chain. If you
-are nominating or checking staking figures, Asset Hub is the source of truth.
+**Staking runs on Asset Hub** (via the async staking pallet), and has since genesis
+— this network has no migration to perform. If you are nominating or checking
+staking figures, Asset Hub is the source of truth. It also holds **every fund**,
+including the treasury the five spender tracks pay from.
 
 - Public RPC: `wss://asset-hub-rpc.pezkuwichain.io`
 
@@ -55,23 +75,26 @@ the relay chain so they stay cheap and fast.
 
 - Public RPC: `wss://people-rpc.pezkuwichain.io`
 
-### Governance
+### Bridge Hub and Coretime
 
-Where the network governs itself: **proposals, referenda, and voting**, powered by
-the **Welati** governance pallet. See [Governance](governance.md).
+**Bridge Hub** (1002) is dedicated to cross-network bridging — moving messages and
+assets between PezkuwiChain and external networks. **Coretime** (1005) allocates
+blockspace. Both are written and specified; neither is seated at genesis, where the
+relay schedules two cores.
 
-### Bridge Hub
+### Governance is not a chain
 
-Dedicated to **cross-network bridging** — moving messages and assets between
-PezkuwiChain and external networks.
+Governance lives on the chains that hold the electorates: the citizen roll and the
+`welati` pezpallet on **People**, HEZ conviction voting on the **Asset Hub** and the
+relay. See [Governance](governance.md).
 
 ## Who runs the network?
 
 | Role | Where | Job |
 |------|-------|-----|
 | **Validators** | Relay chain | Produce & finalize relay blocks, secure the network (TNPoS) |
-| **Nominators** | Asset Hub (post-AHM) | Back validators with staked HEZ, share rewards |
-| **Collators** | Asset Hub, People Chain | Produce parachain blocks, submit proofs to the relay chain |
+| **Nominators** | Asset Hub | Back validators with staked HEZ, share rewards — ranking candidates inside the **stake stratum only** |
+| **Collators** | Asset Hub, People | Produce teyrchain blocks, submit proofs to the relay chain |
 
 See [Staking & Collators](staking.md) for how to participate.
 

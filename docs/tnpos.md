@@ -7,6 +7,16 @@ number of seats regardless of how much stake sits behind it.
 
 **Nine strata × three seats = a committee of 27.**
 
+!!! warning "Nine strata are specified; the gates are not nine independent gates yet"
+    The security argument rests on the strata being gated by **different**
+    authorities — two strata answering to the same institution are one stratum, not
+    two. Three of the nine gates are measured on this chain today: **stake**,
+    **perwerde** and **tikî** each read their own score. The other six are attested
+    by authorities whose dedicated channels are still being built, and until those
+    land they reach this chain as trust standing. The number to judge the network on
+    is the count of **independent** gates, it is published on chain, and it is not
+    nine yet.
+
 ## The nine strata
 
 | Stratum | Admits a citizen who has |

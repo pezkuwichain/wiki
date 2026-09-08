@@ -10,7 +10,7 @@ the SDK and runtime reference, see the **[SDK documentation](https://docs.pezkuw
 
 !!! tip "New here? Start with these"
     - **[Getting Started](getting-started.md)** — what PezkuwiChain is and how to take your first steps
-    - **[Architecture](architecture.md)** — the relay chain and its system parachains
+    - **[Architecture](architecture.md)** — the relay chain and its teyrchains
     - **[Tokens & Standards](tokens.md)** — HEZ, PEZ, and the PEZ-20 / PEZ-721 standards
 
 ## What is PezkuwiChain?
