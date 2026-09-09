@@ -18,5 +18,11 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
+
+      # The whitepaper is not kept in this repo. It is fetched from the repository that owns
+      # it and rendered here in the wiki's own theme, so the two can never describe different
+      # documents -- which is exactly what happened while each site kept its own copy.
+      - name: Fetch the whitepaper from pezkuwi-DKS
+        run: ./scripts/fetch-whitepaper.sh
       - name: Build site (fails on broken links/refs)
         run: mkdocs build --strict

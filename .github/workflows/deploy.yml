@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch: {}
+  # The whitepaper lives in another repository, so a merge there changes what this site should
+  # publish without touching this one. A pull rather than a cross-repo trigger: one fewer secret
+  # and one fewer thing that can quietly stop working, at the cost of a few hours' latency.
+  schedule:
+    - cron: '17 */6 * * *'
 
 permissions:
   contents: read
@@ -23,6 +28,12 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: pip install -r requirements.txt
+
+      # The whitepaper is not kept in this repo. It is fetched from the repository that owns
+      # it and rendered here in the wiki's own theme, so the two can never describe different
+      # documents -- which is exactly what happened while each site kept its own copy.
+      - name: Fetch the whitepaper from pezkuwi-DKS
+        run: ./scripts/fetch-whitepaper.sh
 
       - name: Build site
         run: mkdocs build --strict
