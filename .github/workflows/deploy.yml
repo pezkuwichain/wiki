@@ -46,11 +46,34 @@ jobs:
           USER:     ${{ secrets.WIKI_VPS_USER }}
         run: |
           set -euo pipefail
+
+          # This step failed silently from 2026-06-15 to 2026-09-10 and the site was kept
+          # current by hand instead. It printed nothing at all: `ssh-keyscan`'s stderr went to
+          # /dev/null, and under `set -e` its non-zero exit ended the script with no message.
+          # An unset secret, an unreachable host and a rejected key all looked identical --
+          # exit 1, five seconds, no output. So each stage now says which one it was.
+          for v in SSH_KEY HOST PORT USER; do
+            if [ -z "${!v:-}" ]; then
+              echo "::error::secret WIKI_VPS_$v is empty or not set for this repository"
+              exit 1
+            fi
+          done
+
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
-          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          rsync -az --delete \
-            -e "ssh -i ~/.ssh/id_deploy -p $PORT -o IdentitiesOnly=yes" \
-            site/ "$USER@$HOST:/var/www/subdomains/wiki/"
+
+          # Keep stderr. Whether the host answered at all is the first thing worth knowing,
+          # and it is the thing the old `2>/dev/null` threw away.
+          if ! ssh-keyscan -T 15 -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts; then
+            echo "::error::cannot reach the wiki host on its SSH port -- wrong host/port, or a firewall"
+            exit 1
+          fi
+
+          if ! rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_deploy -p $PORT -o IdentitiesOnly=yes -o ConnectTimeout=20" \
+            site/ "$USER@$HOST:/var/www/subdomains/wiki/"; then
+            echo "::error::rsync failed after the host answered -- key rejected, or the target path is not writable"
+            exit 1
+          fi
           echo "Deployed $(date -u) to wiki.pezkuwichain.io"
