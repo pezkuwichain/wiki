@@ -8,10 +8,17 @@ PezkuwiChain has a **dual-token economy** and a small, familiar family of
 | Token | Role | Notes |
 |-------|------|-------|
 | **HEZ** | Native **gas & security** token | Pays transaction fees; staked to secure the network. Inflationary: **8% by default against a fixed 200,000,000 base, capped at 10% in code.** No halving — that belongs to PEZ. |
-| **PEZ** | **Reward & budget** asset | **Not a governance token — it carries no voting weight.** Fixed at 5,000,000,000 forever, with no mint or burn path and a keyless admin account. 96.25% is the commons, released monthly and **halving every 48 releases**, split 75% to citizens and 25% to the state budget. |
+| **PEZ** | **Reward & budget** asset | **Not a governance token — it carries no voting weight.** Fixed at 5,000,000,000 forever, with no mint or burn path and a keyless admin account. 96.25% is the commons, released monthly and **halving every 48 releases**, split 75% to citizens and 25% to the state budget. **Nothing is released until the roll passes 100,000 citizens** — see [Treasuries](treasuries.md). |
 
-On **Asset Hub**, the canonical representations at genesis are **PEZ (Asset ID 1)**
-and **wHEZ (Asset ID 2, wrapped HEZ)**.
+On **Asset Hub**, the canonical representations at genesis are **PEZ (Asset ID 1)**,
+**wHEZ (Asset ID 2, wrapped HEZ)** and **wUSDT (Asset ID 1000)**.
+
+!!! note "wHEZ is not how HEZ moves between chains"
+    HEZ is **native** on the relay, the Asset Hub and People alike, and moves between
+    them by **teleport** against the escrow the relay holds. wHEZ is a separate
+    convenience: HEZ wrapped one-for-one as an asset so that pallets handling assets
+    rather than the native balance can trade it. Wrapping and teleporting are two
+    different mechanisms, and neither creates supply.
 
 !!! note "HEZ vs PEZ-20"
     Just as ETH itself is not an ERC-20 token, **HEZ — the native gas token — is

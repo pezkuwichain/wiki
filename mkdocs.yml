@@ -67,6 +67,8 @@ extra:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  # Generated at build time by scripts/fetch-whitepaper.sh from pezkuwi-DKS. Not in this repo.
+  - Whitepaper: whitepaper.md
   - Architecture: architecture.md
   - The chains: chains.md
   - Tokens & Standards: tokens.md

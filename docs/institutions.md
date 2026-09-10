@@ -78,7 +78,12 @@ Standing is a single number from zero to a thousand, from four measured parts:
 | **Tikî** | 25 | Community and contribution badges held |
 | **Staking** | 20 | Size and duration of stake |
 
-The weights sum to one hundred and the runtime asserts it. Zero stake is zero trust —
+The weights sum to one hundred and the runtime asserts it. Each part is divided by
+what is **attainable** rather than by a number written beside it — the education
+maximum is every rewarded course taken at full value, and the referral maximum is the
+score a citizen reaches at the vouching ceiling the register's rules currently set —
+so a weight that says twenty-five is twenty-five, and stays twenty-five if a
+ninety-day referendum moves the ceiling. Zero stake is zero trust —
 the staking part is a gate, not merely a weight. But capital is the smallest of the
 four, and its own scale saturates: the tiers stop rewarding size above 750 HEZ, and
 the largest remaining multiplier comes from holding for twelve months rather than

@@ -7,6 +7,14 @@ number of seats regardless of how much stake sits behind it.
 
 **Nine strata × three seats = a committee of 27.**
 
+!!! warning "Judge the network on the count of independent gates"
+    The security argument rests on the strata being gated by **different**
+    authorities — two strata answering to the same institution are one stratum, not
+    two. How many are genuinely independent has been changing as the dedicated
+    channels land, so this page does not restate the number: it is in
+    [the whitepaper](whitepaper.md), which is generated from the source the code is
+    written against, and it is published on chain.
+
 ## The nine strata
 
 | Stratum | Admits a citizen who has |

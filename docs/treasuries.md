@@ -25,15 +25,26 @@ chain. Not the relay. Not root. Not a key. The airdrop pot, the presale pot and 
 PEZ pots are configured with an origin that matches the People chain's location and
 has **no root arm at all**.
 
-!!! warning "The chain's superuser cannot pay itself"
-    The relay's root can halt the chain, upgrade the runtime, and reject a proposed
-    spend — but it cannot spend the airdrop, the presale, or either PEZ pot. To move
-    that money it would have to become the People chain, and the People chain is a
-    register of elected offices.
+!!! warning "The chain's superuser cannot pay itself — short of a runtime upgrade"
+    The relay's root can halt the chain and reject a proposed spend, but there is no
+    call it can make that pays it the airdrop, the presale or either PEZ pot. To move
+    that money by an ordinary act it would have to become the People chain, and the
+    People chain is a register of elected offices.
 
-The HEZ treasury is the exception, and is documented as such: root can spend it
-without limit. It is the fund of last resort, and the one place where the network's
-own governance rather than the state's holds the purse.
+    Stated honestly: root can **upgrade a runtime**, and a runtime is where the origin
+    filters live. So every "cannot reach this money" on this page means "cannot reach
+    it short of a runtime upgrade". What protects the invariant is not impossibility
+    — it is that the only path is an upgrade, that an upgrade is a constitutional
+    amendment rather than an administrative act, and that the path is slow, public
+    and counted by people. Root itself is a seat with two occupants: a referendum of
+    the People chain, and a sudo key held for the founding period.
+
+The HEZ treasury is the exception, and it is the exception on purpose. Its five
+spender tracks are conviction voting over HEZ — the economic franchise deciding an
+economic question — and root is an additional arm above them. It is the fund of last
+resort, and the one place where the network's own governance rather than the state's
+holds the purse. It is also the only vault whose ceiling is a track rather than a
+chain, which is why it is the one to watch.
 
 ## A payment, end to end
 
@@ -71,9 +82,20 @@ authority.
 
 ## Where the PEZ comes from
 
-The rewards pool is released by arithmetic, monthly, halving every **48 releases**
-(about four years). The first period releases half the pool across forty-eight
-months. Each release is derived from the release index rather than accumulated, so no
+**The schedule does not start at genesis. It starts at a hundred thousand citizens.**
+Nothing is released — not the citizens' share, not the state's budget — until the
+register reports that the roll has passed a hundred thousand. The report is
+automatic, made by the chain that holds the register, and it latches: once crossed, a
+later fall in population does not stop the payroll. The reason is arithmetic. The
+first month pays about fifty million PEZ; divided among two hundred citizens that is
+a founding distribution wearing a payroll's clothes, and divided among a hundred
+thousand it is what it says it is. The **founder's allocation is bound to the same
+gate**, in both tokens, so nothing moves for the people who built this before it
+moves for the people it was built for.
+
+Once started, the rewards pool is released by arithmetic, monthly, halving every **48
+releases** (about four years). The first period releases half the pool across
+forty-eight months. Each release is derived from the release index rather than accumulated, so no
 drift is possible and no missed release can be double-paid. Every release splits
 **75% to the incentive pot** and **25% to the government pot**. Nobody signs it; it
 happens on block initialisation.
