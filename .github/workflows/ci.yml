@@ -3,6 +3,10 @@ name: CI
 on:
   pull_request:
     branches: [main]
+  # Direct pushes to main were ungated: the only workflow ran on pull requests, so a commit
+  # pushed straight here was published by the server without anything having built it.
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -24,5 +28,8 @@ jobs:
       # documents -- which is exactly what happened while each site kept its own copy.
       - name: Fetch the whitepaper from pezkuwi-DKS
         run: ./scripts/fetch-whitepaper.sh
+      # No `-q`: `--strict` counts warnings, and `-q` lowers the log level until they are
+      # never emitted -- so `--strict -q` exits 0 on the same broken link this catches.
+      # Measured on mkdocs 1.6.1 while building the server-side publisher.
       - name: Build site (fails on broken links/refs)
         run: mkdocs build --strict
