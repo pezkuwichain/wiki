@@ -7,6 +7,8 @@ number of seats regardless of how much stake sits behind it.
 
 **Nine strata × three seats = a committee of 27.**
 
+[![TNPoS — how the validator committee is seated: nine strata, each gated by a different authority; the gate, the floor and the draw; a committee of 27 with its quorum, halt and fork thresholds; and the cost of misconduct](assets/tnpos-committee.png){ loading=lazy }](assets/tnpos-committee.png "Open the full-size diagram")
+
 !!! warning "Judge the network on the count of independent gates"
     The security argument rests on the strata being gated by **different**
     authorities — two strata answering to the same institution are one stratum, not
@@ -17,17 +19,22 @@ number of seats regardless of how much stake sits behind it.
 
 ## The nine strata
 
-| Stratum | Admits a citizen who has |
-|---|---|
-| **Stake** | Any staking score above zero |
-| **Meclis** | Any trust, on the parliamentary path |
-| **Dîwan** | Any trust, on the judicial path |
-| **Perwerde** | Any education score above zero |
-| **Tikî** | Any community score above zero |
-| **Welatî lottery** | Any trust — the open seat of ordinary citizenship |
-| **Geography** | Any trust, on regional distribution |
-| **Tenure** | Any trust, on length of service |
-| **Infrastructure** | Any trust, on operational contribution |
+| Stratum | Admits a citizen who has | Answers to |
+|---|---|---|
+| **Stake** | Any staking score above zero | The market |
+| **Meclis** | A seat in the elected house | The house |
+| **Dîwan** | A seat on the court | The court |
+| **Perwerde** | Any education score above zero | Accredited institutions |
+| **Tikî** | Any community score above zero | The community |
+| **Welatî lottery** | Trust above forty — more than the cheapest act | Nobody; the pool dilutes |
+| **Geography** | An attested belonging to a part of the nation | A notary, undone by the court |
+| **Tenure** | A year of unbroken, offence-free membership | Nobody; only elapsed time |
+| **Infrastructure** | Forty-eight sessions validated, and no pattern of failing with others | Nobody; the chain's own record |
+
+The third column is the one the security argument counts: two strata answering to the
+same institution are one stratum. Geography's three seats rotate across the six recognised
+regions (Başûr, Bakur, Rojava, Rojhilat, the diaspora and the Caucasus) rather than
+pooling, so the most populous region cannot take all three.
 
 ## Membership is a gate, not a ranking
 
@@ -45,8 +52,10 @@ does not exist until that era is under way.
 ## The floors that refuse a weak committee
 
 A stratum with fewer than **50** eligible members is **not seated at all**, and its
-seats are **not redistributed**. A committee is refused if it draws from fewer than
-five strata, or has fewer than fifteen members, or more than sixty-four.
+seats are **not redistributed**. The court is the single exception, with a floor of
+**three**: its eleven seats can never reach fifty, and they cannot be manufactured the way
+eligible members of an open stratum can. A committee is refused if it draws from fewer
+than five strata, or has fewer than fifteen members, or more than sixty-four.
 
 Refusing to fill a committee is a safer failure than filling it from whoever happens
 to be available: a thin field produces a smaller committee, never a captured one.
